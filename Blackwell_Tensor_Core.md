@@ -1,6 +1,6 @@
-# Blackwell SM_100a Tensor Core Architecture {#sec_title}
+# [Blackwell SM_100a Tensor Core Architecture](#sec:tile)
 
-##	Tensor Memory
+## [Tensor Memory](#sec:ensor_mem)
 
 Blackwell architecture introduced new features like Tensor Memory to relief the pressure of Shared memory and Vector Register. Such that the matrices can be read from Tensor Memory and Shared Memory, instead of from Vector Register. The matrices are stored as shown in Table 8 and 
 Table 8 Tensor Core Matrix Storage {#table-matrix-storage}
@@ -9,15 +9,15 @@ Table 8 Tensor Core Matrix Storage {#table-matrix-storage}
 | :-                  |  -:    |
 | A	                  |   Tensor Memory OR Shared Memory  |
 | B	                  |   Shared Memory   |
-| D	                  |   Tensor Memory
-| Sparse Meta Data    |   |
-| A-Scale / B-Scale   |   |
+| D	                  |   Tensor Memory   |
+| Sparse Meta Data    |   Tensor Memory   |
+| A-Scale / B-Scale   |   Tensor Memory   |
 
 Tensor Memory is a 128*512 Dwords memory for each Stream Multi-Processor (SM), and it has 128 lanes while each lane has 512 Dwords, shown as in Figure 2. These 128 lanes can be accessed simultaneously and thus the read or write bandwidth should be 128 Dwords/cycle.
 
 Data can be moved between Tensor Memory and Vector Register, and from Shared Memory to Tensor Memory. These data movement instructions are denoted in Figure 3.
 
-### Tcgen05.shift
+### [Tcgen05.shift](#sec:shift)
 Tensor Memory has a shift operation which enables the acceleration and data reuse of convolution, which would be described detailly in Section 3.2. In tcgen05.shift, the data of each lane would be shifted to next lane, except the last lane, which is Lane[0] in Figure 4.
  
 ![Shift Operation in Tensor Memory](image.jpg)
@@ -43,7 +43,7 @@ Blackwell improve the efficiency of convolution operation by reusing the Activat
 The original convolution operation with OH/H in the outer loop is shown in Algorithm 1, we will derive the Blackwell Convolution implementation from it.
 
 Algorithm 1 Original Convolution with OH in Outer Loop
-```
+```C
 for (p=0; p<P; p++) // OH
   for (nq=0; nq<NQ; nq++) // N, OW
     {n, q} = F(nq)
