@@ -13,6 +13,14 @@ Table 8 Tensor Core Matrix Storage {#table-matrix-storage}
 | Sparse Meta Data    |   Tensor Memory   |
 | A-Scale / B-Scale   |   Tensor Memory   |
 
+<div align="center">
+  <img src="figures/blackwell_tcore/tcore_mma.png">
+</div>
+<div align="center">
+  Figure 1 Tensor Core Operation in Blackwell
+</div>
+
+
 Tensor Memory is a 128*512 Dwords memory for each Stream Multi-Processor (SM), and it has 128 lanes while each lane has 512 Dwords, shown as in Figure 2. These 128 lanes can be accessed simultaneously and thus the read or write bandwidth should be 128 Dwords/cycle.
 
 <div align="center">
@@ -185,8 +193,15 @@ The above three steps can be optimized by reusing most of the data of Input Acti
 
 <div align="center">
   <img src="figures/blackwell_tcore/conv_step1.png">
-  <p>
+</div>
+<div align="center">
+  (a)
+</div>
+<div align="center">
   <img src="figures/blackwell_tcore/conv_step1_3.png">
+</div>
+<div align="center">
+  (b)
 </div>
 <div align="center">
   Figure 7 Data Reuse and Shift
