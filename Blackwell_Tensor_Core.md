@@ -15,22 +15,34 @@ Table 8 Tensor Core Matrix Storage {#table-matrix-storage}
 
 Tensor Memory is a 128*512 Dwords memory for each Stream Multi-Processor (SM), and it has 128 lanes while each lane has 512 Dwords, shown as in Figure 2. These 128 lanes can be accessed simultaneously and thus the read or write bandwidth should be 128 Dwords/cycle.
 
-![Tensor Memory Structure](figures/blackwell_tcore/tmem.png)
+<p align="center">
+  <img src="figures/blackwell_tcore/tmem.png">
+</p>
+<p style="text-align:center;">
+  Figure 2 Tensor Memory Structure
+</p>
 
-Figure 2 Tensor Memory Structure
 
 Data can be moved between Tensor Memory and Vector Register, and from Shared Memory to Tensor Memory. These data movement instructions are denoted in Figure 3.
 
-![Tensor Memory Structure](figures/blackwell_tcore/tmem_move.png)
+<p align="center">
+  <img src="figures/blackwell_tcore/tmem_move.png">
+</p>
+<p style="text-align:center;">
+  Figure 3 Tensor Memory Data Move Operation
+</p>
 
-Figure 3 Blackwell Tensor Core Data Movement Instructions
 
 ### [Tcgen05.shift](#sec:shift)
 Tensor Memory has a shift operation which enables the acceleration and data reuse of convolution, which would be described detailly in Section 3.2. In tcgen05.shift, the data of each lane would be shifted to next lane, except the last lane, which is Lane[0] in Figure 4.
  
-![Shift Operation in Tensor Memory](figures/blackwell_tcore/tmem_shift.png)
+ <p align="center">
+  <img src="figures/blackwell_tcore/tmem_shift.png">
+</p>
+<p style="text-align:center;">
+  Figure 4 Shift Operation in Tensor Memory
+</p>
 
-Figure 4  Shift Operation in Tensor Memory
 
 ### Tensor Memory Architecture
 A possible architecture of Tensor Memory is shown in Figure 5:
@@ -153,9 +165,15 @@ for (p=0; p<P; p++)               // OH
                 {n, q} = (nq + mma_n);
                 O[n][p][q][k+mma_m] = MMA_D[mma_m][mma_n];
 ```
-![Conv](figures/blackwell_tcore/conv.png)
+<p align="center">
+  <img src="figures/blackwell_tcore/conv.png">
+</p>
+<p style="text-align:center;">
+  Figure 5 Data Reuse in Convolution
+</p>
 
-Figure 5 Data Reuse in Convolution
+
+
 
 Take the convolution with Activation size (N, H=9, W=9, C), Weight Size (R=3, S=3, C, K) and Output Activation size (N, P=7, Q=9, K) shown in Figure 6 as an example. To generate the first 16 OA channels with p=0, which can be denoted as OA(n=0, p=0, q=[0:8], K) and OA(n=1, p=0, q=[p:6], K), marked as deep green color in  Figure 6, the kernels may be convolved with the first 3 rows of the IA data. For the weight data W(r=1, S=[0:2], C, K), it will be multiplied with the 1st row of the IA data. 
 -	For W(r=1, s=0, C, K), it will be operated with IA data IA(n=0, h=0, w=[-1:7], C) and IA(n=1, h=0, w=[-1:5], C). In which, the IA(n=0, h=0, w=-1, C) and IA(n=1, h=0, w=-1, C) are in the padded area. 
@@ -168,13 +186,15 @@ The above three steps can be optimized by reusing most of the data of Input Acti
 1. We can replace the data in purple row with the padding value which is 0 here. 
 2. We can skip to write the corresponding row of D back into Tensor Memory, or write 0 back to Tensor Memory. The corresponding row of D is also marked in gray color in right side of Figure 7 (a).
 
-![Conv](figures/blackwell_tcore/conv_step1.png)
-(a)
- 
-![Conv](figures/blackwell_tcore/conv_step1_3.png)
-(b)
+<p align="center">
+  <img src="figures/blackwell_tcore/conv_step1.png">
+  <p>
+  <img src="figures/blackwell_tcore/conv_step1_3.png">
+</p>
+<p style="text-align:center;">
+  Figure 7 Data Reuse and Shift
+</p>
 
-Figure 7 Data Reuse and Shift
 
 After finishing the computation of W(r=1, s=0, C, K), we do not need to load all the IA data for W(r=1, s=1, C, K). Show in Figure 7 (b), we shift the IA data one lane, then IA(n=0, h=0, w=-1, C) would be discarded, and we only need to load IA(n=1, h=0, w=6, C) in this case. As none of the rows are from the padding area, we do not need to mask out any rows in this case. 
 
