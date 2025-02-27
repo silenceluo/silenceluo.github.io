@@ -5,19 +5,19 @@
   - [2.1. Stride=1, Dilation=1](#21-stride1-dilation1)
     - [2.1.1. BPW](#211-bpw)
       - [2.1.1.1. BPW as Convolution of $A$ and $O'$](#2111-bpw-as-convolution-of-a-and-o)
-        - [2.1.1.1.1. BPW as Convolution of $O'$ and $A$](#21111-bpw-as-convolution-of-o-and-a)
-  - [2.2. \[BPA\]](#22-bpa)
-  - [2.3. \[Dilation=1, Stride\>1\]](#23-dilation1-stride1)
+      - [2.1.1.2. BPW as Convolution of $O'$ and $A$](#2112-bpw-as-convolution-of-o-and-a)
+    - [2.1.2. BPA](#212-bpa)
+  - [2.2. Dilation=1, Stride\>1](#22-dilation1-stride1)
+    - [2.2.1. BPW](#221-bpw)
+    - [2.2.2. BPA](#222-bpa)
+  - [2.3. Dilation \> 1, Stride \> 1](#23-dilation--1-stride--1)
     - [2.3.1. BPW](#231-bpw)
     - [2.3.2. BPA](#232-bpa)
-  - [2.4. Dilation $\>$ 1, Stride $\>$ 1](#24-dilation--1-stride--1)
+  - [2.4. Take $N$, $K$ and $C$ into Consideration](#24-take-n-k-and-c-into-consideration)
     - [2.4.1. BPW](#241-bpw)
+      - [2.4.1.1. BPW as Convolution of $A$ and $O'$](#2411-bpw-as-convolution-of-a-and-o)
+      - [2.4.1.2. BPW as Convolution of $O'$ and $A$](#2412-bpw-as-convolution-of-o-and-a)
     - [2.4.2. BPA](#242-bpa)
-  - [2.5. Take $N$, $K$ and $C$ into Consideration](#25-take-n-k-and-c-into-consideration)
-    - [2.5.1. BPW](#251-bpw)
-      - [2.5.1.1. The first view of BPW as Original Convolution](#2511-the-first-view-of-bpw-as-original-convolution)
-      - [2.5.1.2. The Second view of BPW as Original Convolution](#2512-the-second-view-of-bpw-as-original-convolution)
-    - [2.5.2. BPA](#252-bpa)
 
 
 # 1. [Back Propagation of MMA](#sec:mma_bp)
@@ -177,7 +177,7 @@ $$
 
 Compare (\ref{eg:dw_s1d1}) and (\ref{eq:conv2d_sldl}), we can see that $d W$ is a convolution of $A$ and $O'$, and the padding size is still $(pad_H, pad_W)$.
 
-##### 2.1.1.1.1. BPW as Convolution of $O'$ and $A$
+#### 2.1.1.2. BPW as Convolution of $O'$ and $A$
 
 $$
 \begin{aligned}
@@ -204,7 +204,7 @@ $$
 
 In this view of BPW, it is a convolution of $O'$ and $A$, with padding size $(R-1-pad_H, S-1-pad_W)$. The generated $W(R-1-r', S-1-s')$ should be rotated \dag{180} to generate $W$.
 
-## 2.2. [BPA]
+### 2.1.2. BPA
 
 The BPA of Conv2D is as following:
 
@@ -239,9 +239,9 @@ $$
 
 From the above equation, we can see that BPA is a convolution of $O'$ and $W'=W(R-1-r, S-1-s)$, in which $W'$ is a 180 degree rotated $W$. The padding size is $(R-1-pad_H, S-1-pad_W)$.
 
-## 2.3. [Dilation=1, Stride>1]
+## 2.2. Dilation=1, Stride>1
 
-### 2.3.1. BPW
+### 2.2.1. BPW
 
 $$
 \begin{aligned}
@@ -254,7 +254,7 @@ $$
 
 Thus it is a stride convolution with dilation value $(stride_H, stride_W)$.
 
-### 2.3.2. BPA
+### 2.2.2. BPA
 
 As
 
@@ -293,9 +293,9 @@ Thus for BPA with Dilation=1 and Stride$>$1:
   2. Then dilate the padded $O'$ by inserting $stride_H$ zeros between every element.
 
 
-## 2.4. Dilation $>$ 1, Stride $>$ 1
+## 2.3. Dilation > 1, Stride > 1
 
-### 2.4.1. BPW
+### 2.3.1. BPW
 
 $$
 \begin{aligned}
@@ -308,7 +308,7 @@ $$
 
 Thus it is a dilated convolution with $(dilate_H=stride_H, dilate_W=stride_W)$ and $(stride_H=d_H, stride_W=d_W)$.
  
-### 2.4.2. BPA
+### 2.3.2. BPA
 
 $$
 d A(h, w) = \sum_{p} \sum_{q} O'(p, q) * W(r, s) 
@@ -351,7 +351,7 @@ Thus for BPA with Dilation$>$1 and Stride$>$1:
 
 
 
-## 2.5. Take $N$, $K$ and $C$ into Consideration
+## 2.4. Take $N$, $K$ and $C$ into Consideration
 
 $$
 \begin{aligned}
@@ -360,7 +360,7 @@ O(n, p, q, k)
 \end{aligned}
 $$
 
-### 2.5.1. BPW
+### 2.4.1. BPW
 
 $$
 \begin{aligned}
@@ -385,7 +385,7 @@ $$
 
 There are two ways to map BPW to MMA operation.
 
-#### 2.5.1.1. The first view of BPW as Original Convolution
+#### 2.4.1.1. BPW as Convolution of $A$ and $O'$
 
 The first way to implement BPW is shown in (\ref{eq:bpw_reorg_AO}).
 
@@ -397,7 +397,7 @@ $$
 
 We can view (\ref{eq:bpw_reorg_AO}) as the original convolution by mapping the coordinates.
 
-#### 2.5.1.2. The Second view of BPW as Original Convolution
+#### 2.4.1.2. BPW as Convolution of $O'$ and $A$
 
 The second way to implement BPW is shown in (\ref{eq:bpw_reorg}).
 
@@ -410,7 +410,7 @@ $$
 We can view (\ref{eq:bpw_reorg}) as the original convolution by mapping the coordinates.
 
 
-### 2.5.2. BPA
+### 2.4.2. BPA
 
 $$
 \begin{aligned}
