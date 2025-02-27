@@ -1,4 +1,26 @@
-# [Back Propagation of MMA](#sec:mma_bp)
+- [1. Back Propagation of MMA](#1-back-propagation-of-mma)
+  - [1.1. BPA of MMA](#11-bpa-of-mma)
+  - [1.2. BPW of MMA](#12-bpw-of-mma)
+- [2. Back Propagation of Convolution](#2-back-propagation-of-convolution)
+  - [2.1. Stride=1, Dilation=1](#21-stride1-dilation1)
+    - [2.1.1. BPW](#211-bpw)
+      - [2.1.1.1. BPW as Convolution of $A$ and $O'$](#2111-bpw-as-convolution-of-a-and-o)
+        - [2.1.1.1.1. BPW as Convolution of $O'$ and $A$](#21111-bpw-as-convolution-of-o-and-a)
+  - [2.2. \[BPA\]](#22-bpa)
+  - [2.3. \[Dilation=1, Stride\>1\]](#23-dilation1-stride1)
+    - [2.3.1. BPW](#231-bpw)
+    - [2.3.2. BPA](#232-bpa)
+  - [2.4. Dilation $\>$ 1, Stride $\>$ 1](#24-dilation--1-stride--1)
+    - [2.4.1. BPW](#241-bpw)
+    - [2.4.2. BPA](#242-bpa)
+  - [2.5. Take $N$, $K$ and $C$ into Consideration](#25-take-n-k-and-c-into-consideration)
+    - [2.5.1. BPW](#251-bpw)
+      - [2.5.1.1. The first view of BPW as Original Convolution](#2511-the-first-view-of-bpw-as-original-convolution)
+      - [2.5.1.2. The Second view of BPW as Original Convolution](#2512-the-second-view-of-bpw-as-original-convolution)
+    - [2.5.2. BPA](#252-bpa)
+
+
+# 1. [Back Propagation of MMA](#sec:mma_bp)
 
 The forward propagation of MMA can be denoted as (\ref{eq2}):
 
@@ -9,7 +31,7 @@ Y(m, n) = \sum_{k=0}^{K-1} X(m, k) * W(k, n) \\
 \tag{1}
 $$
 
-## [BPA of MMA](#sec:mma_bpa)
+## 1.1. [BPA of MMA](#sec:mma_bpa)
 
 The gradient of Input Activation can be defined as:
 
@@ -30,7 +52,7 @@ $$
 X' = Y' * W^T
 $$
 
-## [BPW of MMA](#sec:mma_bpw)
+## 1.2. [BPW of MMA](#sec:mma_bpw)
 
 The gradient of Weight can be defined as:
 
@@ -52,7 +74,7 @@ $$
 
 
 
-# [Back Propagation of Convolution](#sec:conv2d)
+# 2. [Back Propagation of Convolution](#sec:conv2d)
 
 The 2D convolution for a single batch (N=1) can be defined as following:
 
@@ -89,7 +111,7 @@ $$
 
 Firstly, let us ignore N and C to simplify the work.
 
-## [Stride=1, Dilation=1](#sec:conv_S1D1)
+## 2.1. [Stride=1, Dilation=1](#sec:conv_S1D1)
 
 To simplify the work, we assume that stride and dilation parameters are all 1 in all direction, And let us omit $K$ and $C$ direction first. Then the sie of OA can he simplified as:
 
@@ -111,7 +133,7 @@ q &= w + pad_W - s
 $$
 
 
-### [BPW](#sec:conv_S1D1_bpw_)
+### 2.1.1. [BPW](#sec:conv_S1D1_bpw_)
 
 Let us ignore the $K$ and $c$ direction first, to simplify the derivation of BPW and BPA
 
@@ -123,7 +145,7 @@ d W(r,s) &= \frac{\delta L}{\delta W(r,s)}   \\
 \end{aligned}{ }
 $$
 
-#### BPW as Convolution of $A$ and $O'$
+#### 2.1.1.1. BPW as Convolution of $A$ and $O'$
 As
 
 $$
@@ -155,7 +177,7 @@ $$
 
 Compare (\ref{eg:dw_s1d1}) and (\ref{eq:conv2d_sldl}), we can see that $d W$ is a convolution of $A$ and $O'$, and the padding size is still $(pad_H, pad_W)$.
 
-##### BPW as Convolution of $O'$ and $A$
+##### 2.1.1.1.1. BPW as Convolution of $O'$ and $A$
 
 $$
 \begin{aligned}
@@ -182,7 +204,7 @@ $$
 
 In this view of BPW, it is a convolution of $O'$ and $A$, with padding size $(R-1-pad_H, S-1-pad_W)$. The generated $W(R-1-r', S-1-s')$ should be rotated \dag{180} to generate $W$.
 
-## [BPA]
+## 2.2. [BPA]
 
 The BPA of Conv2D is as following:
 
@@ -217,9 +239,9 @@ $$
 
 From the above equation, we can see that BPA is a convolution of $O'$ and $W'=W(R-1-r, S-1-s)$, in which $W'$ is a 180 degree rotated $W$. The padding size is $(R-1-pad_H, S-1-pad_W)$.
 
-## [Dilation=1, Stride>1]
+## 2.3. [Dilation=1, Stride>1]
 
-### BPW
+### 2.3.1. BPW
 
 $$
 \begin{aligned}
@@ -232,7 +254,7 @@ $$
 
 Thus it is a stride convolution with dilation value $(stride_H, stride_W)$.
 
-### BPA
+### 2.3.2. BPA
 
 As
 
@@ -271,9 +293,9 @@ Thus for BPA with Dilation=1 and Stride$>$1:
   2. Then dilate the padded $O'$ by inserting $stride_H$ zeros between every element.
 
 
-## Dilation $>$ 1, Stride $>$ 1
+## 2.4. Dilation $>$ 1, Stride $>$ 1
 
-### BPW
+### 2.4.1. BPW
 
 $$
 \begin{aligned}
@@ -286,7 +308,7 @@ $$
 
 Thus it is a dilated convolution with $(dilate_H=stride_H, dilate_W=stride_W)$ and $(stride_H=d_H, stride_W=d_W)$.
  
-### BPA
+### 2.4.2. BPA
 
 $$
 d A(h, w) = \sum_{p} \sum_{q} O'(p, q) * W(r, s) 
@@ -329,7 +351,7 @@ Thus for BPA with Dilation$>$1 and Stride$>$1:
 
 
 
-## Take $N$, $K$ and $C$ into Consideration
+## 2.5. Take $N$, $K$ and $C$ into Consideration
 
 $$
 \begin{aligned}
@@ -338,7 +360,7 @@ O(n, p, q, k)
 \end{aligned}
 $$
 
-### BPW
+### 2.5.1. BPW
 
 $$
 \begin{aligned}
@@ -363,7 +385,7 @@ $$
 
 There are two ways to map BPW to MMA operation.
 
-#### The first view of BPW as Original Convolution
+#### 2.5.1.1. The first view of BPW as Original Convolution
 
 The first way to implement BPW is shown in (\ref{eq:bpw_reorg_AO}).
 
@@ -375,7 +397,7 @@ $$
 
 We can view (\ref{eq:bpw_reorg_AO}) as the original convolution by mapping the coordinates.
 
-#### The Second view of BPW as Original Convolution
+#### 2.5.1.2. The Second view of BPW as Original Convolution
 
 The second way to implement BPW is shown in (\ref{eq:bpw_reorg}).
 
@@ -388,7 +410,7 @@ $$
 We can view (\ref{eq:bpw_reorg}) as the original convolution by mapping the coordinates.
 
 
-### BPA
+### 2.5.2. BPA
 
 $$
 \begin{aligned}
