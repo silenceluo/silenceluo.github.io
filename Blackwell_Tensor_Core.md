@@ -1,6 +1,16 @@
-# [Blackwell SM_100a Tensor Core Architecture](#sec:tile)
+- [1. Blackwell SM\_100a Tensor Core Architecture](#1-blackwell-sm_100a-tensor-core-architecture)
+  - [1.1. Tensor Memory](#11-tensor-memory)
+    - [1.1.1. Tcgen05.shift](#111-tcgen05shift)
+    - [1.1.2. Tensor Memory Architecture](#112-tensor-memory-architecture)
+  - [1.2. Convolution](#12-convolution)
+    - [1.2.1. Algorithm](#121-algorithm)
+    - [1.2.2. Instruction](#122-instruction)
+  - [1.3. MMA Shape](#13-mma-shape)
 
-## [Tensor Memory](#sec:ensor_mem)
+
+# 1. [Blackwell SM_100a Tensor Core Architecture](#sec:tile)
+
+## 1.1. [Tensor Memory](#sec:ensor_mem)
 
 Blackwell architecture introduced new features like Tensor Memory to relief the pressure of Shared memory and Vector Register. Such that the matrices can be read from Tensor Memory and Shared Memory, instead of from Vector Register. The matrices are stored as shown in Table 8 and 
 Table 8 Tensor Core Matrix Storage {#table-matrix-storage}
@@ -40,7 +50,7 @@ Data can be moved between Tensor Memory and Vector Register, and from Shared Mem
 </div>
 
 
-### [Tcgen05.shift](#sec:shift)
+### 1.1.1. [Tcgen05.shift](#sec:shift)
 Tensor Memory has a shift operation which enables the acceleration and data reuse of convolution, which would be described detailly in Section 3.2. In tcgen05.shift, the data of each lane would be shifted to next lane, except the last lane, which is Lane[0] in Figure 4.
  
 <div align="center">
@@ -51,7 +61,7 @@ Tensor Memory has a shift operation which enables the acceleration and data reus
 </div>
 
 
-### Tensor Memory Architecture
+### 1.1.2. Tensor Memory Architecture
 A possible architecture of Tensor Memory is shown in Figure 5:
 -	For each 32-thread, or for each Tensor Core, or in each CU, the Tensor Memory has 8 standard alone banks and each bank’s bandwidth is 32 Dwords for 1 Dword/thread, and the depth is 64. 
 -	There are 4 such groups, each group for 32-thread/Tensor Core, thus 32 banks in total for Tensor Memory.
@@ -63,8 +73,8 @@ There could be different architecture for Tensor Memory, as there is a balance b
  
 Figure 5 Tensor Memory Architecture for 32 Threads
 
-## Convolution 
-### Algorithm
+## 1.2. Convolution 
+### 1.2.1. Algorithm
 Blackwell improve the efficiency of convolution operation by reusing the Activation data in Tensor Memory. As shown in previous section, the data in Tensor Memory can be shifted by one lane, and this feature can be used to reuse the Activation data thus to relief the bandwidth of Shared Memory. 
 
 The original convolution operation with OH/H in the outer loop is shown in Algorithm 1, we will derive the Blackwell Convolution implementation from it.
@@ -212,7 +222,7 @@ After finishing the computation of W(r=1, s=0, C, K), we do not need to load all
 
 Similarly, after finishing the computation of W(r=1, s=1, C, K), we can reuse most of the IA data for W(r=1, s=2, C, K). Show in Figure 7 (b), we shift the IA data one lane, then IA(n=0, h=0, w=0, C) would be discarded, and we only need to load IA(n=1, h=0, w=7, C) in this case. As W(r=1, s=2, C, K) needs IA(n=0, h=0, w=9, C) which is in the right padding area, this data is not loaded into memory and we need to mask the corresponding channel IA(n=1, h=0, w=0, C) which is not required by W(r=1, s=2, C, K) and it is marked in purple color in the right side of  Figure 7 (b).
 
-### Instruction
+### 1.2.2. Instruction
 Blackwell provides MMA instruction designed for convolution specifically, which is shown in Table 9.
 Table 9 MMA Instruction for Convolution
 
@@ -300,7 +310,7 @@ for (p=0; p<P; p++)               // OH, Iterate at one H
                   O[n][p][q][k+mma_n] = MMA_D[mma_m][mma_n];
 ```
 
-## MMA Shape
+## 1.3. MMA Shape
 The computation power doubles from Hopper to Blackwell, and the MMA size of previous generations are shown in Table 10.
 
 Table 10 MMA Size of Previous Generations
