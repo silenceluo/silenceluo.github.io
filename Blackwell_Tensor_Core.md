@@ -314,6 +314,7 @@ for (p=0; p<P; p++)               // OH, Iterate at one H
 The computation power doubles from Hopper to Blackwell, and the MMA size of previous generations are shown in Table 10.
 
 Table 10 MMA Size of Previous Generations
+
 |         |	Ampere  | Hopper  |
 | :-      | :-:     | -:      |
 | TF32	  | 8x4x4	  | 8x4x8   |
@@ -339,6 +340,7 @@ Table 11 MMA Size of Blackwell
 Micro Scale value in Table 12 shows the group size of Micro Scale factor, which means how many elements in the matrix share one micro scale value. For mxf4.scale, if the matrix size is 8x8x64, 2 micro scale value would be needed for DP64. For nvf4.scale, 4 scale factors are needed for each DP64. 
 
 Table 12 MMA Scale Factor Group Size
+
 | Mx/Nv Data Type	        | Scale Factor Type | SF Vector Size  | OCP Compliant |
 | :---                    | :---              | :-:             | :--:|
 | mx_float8_t<Any F8type>	| float_ue8m0_t	    | 32	            | Yes |
