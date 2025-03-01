@@ -9,34 +9,22 @@
 
   ga('create', 'G-T5N5JY1E21', 'caihanlin.com');
   ga('send', 'pageview');
-
 </script>
-
 
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
-      TeX: {
-        equationNumbers: {
-          autoNumber: "AMS"
-        }
-      },
-      tex2jax: {
-      inlineMath: [['$', '$']],
-      displayMath: [['$$', '$$']],
-      processEscapes: true,
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      inlineMath: [['$','$']]
     }
   });
-  MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
-      alert("Math Processing Error: "+message[1]);
-    });
-  MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
-      alert("Math Processing Error: "+message[1]);
-    });
 </script>
-
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> 
 
 <!-- https://analytics.google.com/analytics/ -->
 <!-- Lastly modified by Hanlin CAI in 2023/01/15 -->
