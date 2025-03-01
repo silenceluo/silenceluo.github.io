@@ -71,9 +71,8 @@ title: Publications
 
 <br>
 
-## Conference Paper
+## Online Documents
 
-## Online Publications
 - Pei Luo, Chao Luo, and Yunsi Fei. "System Clock and Power Supply Cross-Checking for Glitch Detection." IACR Cryptology ePrint Archive 2016 (2016 ): 968
 
 - Pei Luo, Liwei Zhang, Yunsi Fei, and A. Adam Ding. "An Improvement of Both Security and Reliability for Keccak Implementations on Smart Card." IACR Cryptology ePrint Archive 2016 (2016 ): 214
