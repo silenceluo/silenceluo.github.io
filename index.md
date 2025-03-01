@@ -17,10 +17,10 @@ I used to live and work in Boston and Silicon Valley, and now I am living in Sha
 ---
 Here are some of my articles of AI processor:
 
-[The Evolution of AI Accelerator Architecture](blogs/AI_Accelerator_Architecture.md)
+- [The Evolution of AI Accelerator Architecture](blogs/AI_Accelerator_Architecture.md)
 
-[Backpropagation of MMA and Convolution](blogs/Backpropagation.md)
+- [Backpropagation of MMA and Convolution](blogs/Backpropagation.md)
 
-[Blackwell Tensor Core Architecture](blogs/Blackwell_Tensor_Core.md)
+- [Blackwell Tensor Core Architecture](blogs/Blackwell_Tensor_Core.md)
 
 
