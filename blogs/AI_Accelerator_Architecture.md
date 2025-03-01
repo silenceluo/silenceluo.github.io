@@ -26,7 +26,7 @@ D[M-1 : 0] = A[M-1 : 0][K-1 : 0] \times B[K-1 : 0] + C[M-1 : 0]
 $$
 
 <div align="center">
-  <img src="The_Evolution_of_AI_Accelerator_Architecture/Vector_Matrix.png">
+  <img src="AI_Accelerator_Architecture/Vector_Matrix.png">
 </div>
 <div align="center">
   Figure 3 Vector*Matrix
@@ -36,7 +36,7 @@ This $Vector \times Matrix$ processor has  $M \times K$ multipliers, and omparin
 
 
 <div align="center">
-  <img src="The_Evolution_of_AI_Accelerator_Architecture/cambricon_npu.png">
+  <img src="AI_Accelerator_Architecture/cambricon_npu.png">
 </div>
 <div align="center">
   Figure 3 Cambricon NPU Architecture with Vector*Matrix
@@ -54,14 +54,14 @@ $$
 In tihs equation, the size of matrix $A$ is $M \times K$, the size of $B$ is $K \times N$ which the size of C and D is $M \times N$. It has $M * N * K$ multipliers in each MMA unit, thus is has much higher computation density than Vecotr Core and $Vector \times Matrix$ unit. 
 
 <div align="center">
-  <img src="The_Evolution_of_AI_Accelerator_Architecture/matrix_matrix.png">
+  <img src="AI_Accelerator_Architecture/matrix_matrix.png">
 </div>
 <div align="center">
   Figure 3 Matrix*Matrix
 </div>
 
 <div align="center">
-  <img src="The_Evolution_of_AI_Accelerator_Architecture/Tensor_Core.png" alt="Tensor_Core" title="Tensor Core Matrix*Matrix" width="500">
+  <img src="AI_Accelerator_Architecture/Tensor_Core.png" alt="Tensor_Core" title="Tensor Core Matrix*Matrix" width="500">
 </div>
 <div align="center">
   Figure 3 Tensor Core Matrix*Matrix
@@ -72,7 +72,7 @@ In tihs equation, the size of matrix $A$ is $M \times K$, the size of $B$ is $K 
 Systolic Array is a special MMA processor, but it has the same number of multipliers as $Vector \times Matrix$
 
 <div align="center">
-  <img src="The_Evolution_of_AI_Accelerator_Architecture/systolic.png"  alt="Systolic" title="Systolic Array">
+  <img src="AI_Accelerator_Architecture/systolic.png"  alt="Systolic" title="Systolic Array">
 </div>
 <div align="center">
   Figure 3 Systolic Array Flow
