@@ -61,14 +61,7 @@ In tihs equation, the size of matrix $A$ is $M \times K$, the size of $B$ is $K 
 </div>
 
 
-<div align="center">
-  <img src="The_Evolution_of_AI_Accelerator_Architecture/Tensor_Core.png">
-</div>
-<div align="center">
-  Figure 3 Matrix*Matrix
-</div>
-
-
+<img src="The_Evolution_of_AI_Accelerator_Architecture/Tensor_Core.png" alt="Tensor_Core" title="Tensor Core Matrix*Matrix" width="150" height="100" /> 
 
 ## 1.4. Systolic Array
 
