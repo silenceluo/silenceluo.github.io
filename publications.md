@@ -6,6 +6,12 @@ title: Publications
 
 
 ---
+## Approved Patent
+- Pei, Luo, Ellen Liao, Lu Lu, Kathiravetpillai Sivanesan, and JoonBeom Kim. "Method for physical layer security protection using public keys." U.S. Patent 10,425,810, issued September 24, 2019.
+
+<br>
+
+---
 
 ## Journal Paper
 
