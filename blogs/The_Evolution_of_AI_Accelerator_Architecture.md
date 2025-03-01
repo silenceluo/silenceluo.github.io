@@ -60,20 +60,23 @@ In tihs equation, the size of matrix $A$ is $M \times K$, the size of $B$ is $K 
   Figure 3 Matrix*Matrix
 </div>
 
-
-<img src="The_Evolution_of_AI_Accelerator_Architecture/Tensor_Core.png" alt="Tensor_Core" title="Tensor Core Matrix*Matrix" width="150" height="100" /> 
+<div align="center">
+  <img src="The_Evolution_of_AI_Accelerator_Architecture/Tensor_Core.png" alt="Tensor_Core" title="Tensor Core Matrix*Matrix" width="500">
+</div>
+<div align="center">
+  Figure 3 Tensor Core Matrix*Matrix
+</div>
 
 ## 1.4. Systolic Array
 
 Systolic Array is a special MMA processor, but it has the same number of multipliers as $Vector \times Matrix$
 
 <div align="center">
-  <img src="The_Evolution_of_AI_Accelerator_Architecture/systolic.png">
+  <img src="The_Evolution_of_AI_Accelerator_Architecture/systolic.png"  alt="Systolic" title="Systolic Array">
 </div>
 <div align="center">
   Figure 3 Systolic Array Flow
 </div>
-
 
 
 

@@ -4,6 +4,8 @@ layout: page
 
 # Dr. Pei LUO (骆培)
 
+<img src="file/cat.jpg" class="floatpic">
+
 Email: **<font color="#990000">  luopei.work@gmail.com </font>** 
 
 
