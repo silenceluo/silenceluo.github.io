@@ -24,7 +24,7 @@ Table 8 Tensor Core Matrix Storage {#table-matrix-storage}
 | A-Scale / B-Scale   |   Tensor Memory   |
 
 <div align="center">
-  <img src="figures/blackwell_tcore/tcore_mma.png">
+  <img src="blackwell_tcore/tcore_mma.png">
 </div>
 <div align="center">
   Figure 1 Tensor Core Operation in Blackwell
@@ -34,7 +34,7 @@ Table 8 Tensor Core Matrix Storage {#table-matrix-storage}
 Tensor Memory is a 128*512 Dwords memory for each Stream Multi-Processor (SM), and it has 128 lanes while each lane has 512 Dwords, shown as in Figure 2. These 128 lanes can be accessed simultaneously and thus the read or write bandwidth should be 128 Dwords/cycle.
 
 <div align="center">
-  <img src="figures/blackwell_tcore/tmem.png">
+  <img src="blackwell_tcore/tmem.png">
 </div>
 <div align="center">
   Figure 2 Tensor Memory Structure
@@ -43,7 +43,7 @@ Tensor Memory is a 128*512 Dwords memory for each Stream Multi-Processor (SM), a
 Data can be moved between Tensor Memory and Vector Register, and from Shared Memory to Tensor Memory. These data movement instructions are denoted in Figure 3.
 
 <div align="center">
-  <img src="figures/blackwell_tcore/tmem_move.png">
+  <img src="blackwell_tcore/tmem_move.png">
 </div>
 <div align="center">
   Figure 3 Tensor Memory Data Move Operation
@@ -54,7 +54,7 @@ Data can be moved between Tensor Memory and Vector Register, and from Shared Mem
 Tensor Memory has a shift operation which enables the acceleration and data reuse of convolution, which would be described detailly in Section 3.2. In tcgen05.shift, the data of each lane would be shifted to next lane, except the last lane, which is Lane[0] in Figure 4.
  
 <div align="center">
-  <img src="figures/blackwell_tcore/tmem_shift.png">
+  <img src="blackwell_tcore/tmem_shift.png">
 </div>
 <div align="center">
   Figure 4 Shift Operation in Tensor Memory
@@ -183,7 +183,7 @@ for (p=0; p<P; p++)               // OH
                 O[n][p][q][k+mma_m] = MMA_D[mma_m][mma_n];
 ```
 <div align="center">
-  <img src="figures/blackwell_tcore/conv.png">
+  <img src="blackwell_tcore/conv.png">
 </div>
 <div align="center">
   Figure 5 Data Reuse in Convolution
@@ -202,13 +202,13 @@ The above three steps can be optimized by reusing most of the data of Input Acti
 2. We can skip to write the corresponding row of D back into Tensor Memory, or write 0 back to Tensor Memory. The corresponding row of D is also marked in gray color in right side of Figure 7 (a).
 
 <div align="center">
-  <img src="figures/blackwell_tcore/conv_step1.png">
+  <img src="blackwell_tcore/conv_step1.png">
 </div>
 <div align="center">
   (a)
 </div>
 <div align="center">
-  <img src="figures/blackwell_tcore/conv_step1_3.png">
+  <img src="blackwell_tcore/conv_step1_3.png">
 </div>
 <div align="center">
   (b)
