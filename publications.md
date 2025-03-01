@@ -71,7 +71,7 @@ title: Publications
 
 - **Pei Luo**, Jian Zhang, “SEU mitigation strategies for SRAM-based FPGA”, the 4th International Symposium on Photoelectronic Detection and Imaging, May 2011
 
-- **Pei Luo**, Guofeng Xue, Jian Zhang, Xunfeng Zhao, “A kind of high reliability on-board computer”, 2011 2nd International Congress on Computer Applications and Computational Science, November 2011
+- **Pei Luo**, Guofeng Xue, Jian Zhang, Xunfeng Zhao, “[A kind of high reliability on-board computer](https://link.springer.com/chapter/10.1007/978-3-642-28314-7_66)”, 2011 2nd International Congress on Computer Applications and Computational Science, November 2011
 
 - **Pei Luo**, Jian Zhang, “[A high reliable SOC on-board computer based on Leon3](https://ieeexplore.ieee.org/abstract/document/6272615)”, 2012 IEEE International Conference on Computer Science and Automation Engineering, May 2012
 
