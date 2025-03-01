@@ -29,7 +29,7 @@ $$
   <img src="AI_Accelerator_Architecture/Vector_Matrix.png">
 </div>
 <div align="center">
-  Figure 3 Vector*Matrix
+  Figure 1 Vector*Matrix
 </div>
 
 This $Vector \times Matrix$ processor has  $M \times K$ multipliers, and comparing with $Vector \times Vector$ processor, it has much higher computation density. In many AI acclerators like NPUs (Neural Processing Unit), $Vector \times Matrix$ is the kernel computation unit and the most famous one is from Cambricon in this [paper](https://dl.acm.org/doi/abs/10.1145/2654822.2541967), which opens of the door of AI accelerators.
@@ -38,7 +38,7 @@ This $Vector \times Matrix$ processor has  $M \times K$ multipliers, and compari
   <img src="AI_Accelerator_Architecture/cambricon_npu.png">
 </div>
 <div align="center">
-  Figure 3 Cambricon NPU Architecture with Vector*Matrix
+  Figure 2 Cambricon NPU Architecture with Vector*Matrix
 </div>
 
 In the above architecture, the $NBin$ contains the vector with size $T_n$ and the $SB$ contains the matrix with size $T_n \times T_n$. During the computation, the IA would be broadcasted to Weight data.
@@ -54,7 +54,7 @@ $$
 In tihs equation, the size of matrix $A$ is $M \times K$, the size of $B$ is $K \times N$ which the size of C and D is $M \times N$. It has $M * N * K$ multipliers in each MMA unit, thus is has much higher computation density than Vecotr Core and $Vector \times Matrix$ unit. 
 
 <div align="center">
-  <img src="AI_Accelerator_Architecture/matrix_matrix.png">
+  <img src="AI_Accelerator_Architecture/Matrix_Matrix.png">
 </div>
 <div align="center">
   Figure 3 Matrix*Matrix
@@ -66,7 +66,7 @@ The most important accelerator using  $Matrix \times Matrix$ architecture is Ten
   <img src="AI_Accelerator_Architecture/Tensor_Core.png" alt="Tensor_Core" title="Tensor Core Matrix*Matrix" width="500">
 </div>
 <div align="center">
-  Figure 3 Tensor Core Matrix*Matrix
+  Figure 4 Tensor Core Matrix*Matrix
 </div>
 
 The Green cubes and the Pulple cubes can be seen as the IA and Weight data, and the blus cubes in the middle stand for the multipliers. This Tensor Core shows a $8 \times 8 \times 8$ MMA unit.
@@ -83,7 +83,7 @@ An example of $4 \times 4 \times 4$ systolic array is shown in the following pic
   <img src="AI_Accelerator_Architecture/systolic.png"  alt="Systolic" title="Systolic Array">
 </div>
 <div align="center">
-  Figure 3 Systolic Array Flow
+  Figure 5 Systolic Array Flow
 </div>
 
 Advantage:
