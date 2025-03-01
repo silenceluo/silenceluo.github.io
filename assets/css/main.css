@@ -34,7 +34,12 @@ input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-w
 input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;}
 button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
 textarea{overflow:auto;vertical-align:top;}
-table{border-collapse:collapse;border-spacing:0;margin-bottom:1.5em;}
+table{
+  border-collapse:collapse;
+  border-spacing:0;
+  margin-bottom:1.5em;
+  border:2px solid #ff0000;
+}
 ::-moz-selection{background-color:#dadada;color:#343434;text-shadow:none;}
 ::selection{background-color:#dadada;color:#343434;text-shadow:none;}
 .all-caps{text-transform:uppercase;}
