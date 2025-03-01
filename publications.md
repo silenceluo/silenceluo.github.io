@@ -73,7 +73,7 @@ title: Publications
 
 - **Pei Luo**, Guofeng Xue, Jian Zhang, Xunfeng Zhao, “A kind of high reliability on-board computer”, 2011 2nd International Congress on Computer Applications and Computational Science, November 2011
 
-- **Pei Luo**, Jian Zhang, “A high reliable SOC on-board computer based on Leon3”, 2012 IEEE International Conference on Computer Science and Automation Engineering, May 2012
+- **Pei Luo**, Jian Zhang, “[A high reliable SOC on-board computer based on Leon3](https://ieeexplore.ieee.org/abstract/document/6272615)”, 2012 IEEE International Conference on Computer Science and Automation Engineering, May 2012
 
 <br>
 
