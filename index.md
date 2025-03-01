@@ -2,15 +2,18 @@
 layout: page
 ---
 
-# About Me
+# Dr. Pei LUO (骆培)
 
-Here is **Dr. Pei LUO (Robin, 骆培)**.
+Email: **<font color="#990000">  luopei.work@gmail.com </font>** 
 
-I am an ASIC engineer of AI product. 
+
+I am an ASIC engineer of AI processor. 
 
 <!-- **<font color="#990000">   </font>** -->
 
+
 ---
+Here are some of my articles of AI processor:
 
 
 [Backpropagation](blogs/Backpropagation.md)
