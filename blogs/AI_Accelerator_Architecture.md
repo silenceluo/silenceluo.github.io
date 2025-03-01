@@ -97,12 +97,12 @@ Disadvantage:
 
 Let us compare different kinds of acceleraters in names of Data Reuse Ratio and other benchmarks. Data Reuse Ratio is defined as the ratio of number of multiplications and the size of data. 
 
-| Accelerator Type        | Multiplier Num  | Data size     | Data Reuse Ratio (Mul/Data) | Data Dimension  | Multipliers Dimension |
-| --                      | --              | --            | :--:                        | :--:            | :--:  |
-| CPU                     | 1               | 2             | 0.5                         | 0               | 0   |
-| Vector Core             | N               | 2*N           | 0.5                         | 1               | 1   |
-| Vector $\times$ Matrix  | M * K           | M*K + K       | $\frac{N}{N+1}$             | 1, 2            | 2   |
-| MMA                     | M * N * K       | M*N + N*K     | $\frac{N}{2}$               | 2               | 3   |
-| Systolic                | M * N           | M*N + N*K     | 0.5                         | 2               | 2   |
+| Accelerator Type        | Multiplier Num  | Data size | Data Reuse Ratio (Mul/Data) | Data Dimension  | Multipliers Dimension |
+| --                      | --              | :-------: | :--:                        | :--:            | :--:  |
+| CPU                     | 1               | 2         | 0.5                         | 0               | 0   |
+| Vector Core             | N               | 2*N       | 0.5                         | 1               | 1   |
+| Vector $\times$ Matrix  | M * K           | M*K + K   | $\frac{N}{N+1}$             | 1, 2            | 2   |
+| MMA                     | M * N * K       | M*N + N*K | $\frac{N}{2}$               | 2               | 3   |
+| Systolic                | M * N           | M*N + N*K | 0.5                         | 2               | 2   |
 
 From the above table, it is clear that Tensor Core has the highest Data Reuse Ratio, that is why it is the most popular architecture today.
