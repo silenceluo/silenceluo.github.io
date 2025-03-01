@@ -183,7 +183,7 @@ for (p=0; p<P; p++)               // OH
                 O[n][p][q][k+mma_m] = MMA_D[mma_m][mma_n];
 ```
 <div align="center">
-  <img src="blackwell_tcore/conv.png">
+  <img src="blackwell_tcore/conv.png"  width="1500">
 </div>
 <div align="center">
   Figure 5 Data Reuse in Convolution
