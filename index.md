@@ -8,7 +8,6 @@ layout: page
 
 Email: [**<font color="#990000">  luopei.work@gmail.com </font>** ](mailto:luopei.work@gmail.com)
 
-<br>
 
 ---
 
