@@ -8,11 +8,9 @@ layout: page
 
 Email: **<font color="#990000">  luopei.work@gmail.com </font>** 
 
-
-I am an ASIC engineer of AI processor. 
+I am a GPU/AI ASIC architect. I used to work at Amazon Labs126, Intel Labs and some startups. I am interested in the AI Processor architecture and design. 
 
 <!-- **<font color="#990000">   </font>** -->
-
 
 ---
 Here are some of my articles of AI processor:
