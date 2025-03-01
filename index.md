@@ -6,7 +6,7 @@ layout: page
 
 <!--img src="images/cat.jpg" class="floatpic"-->
 
-Email: **<font color="#990000">  luopei.work@gmail.com </font>** 
+Email: [**<font color="#990000">  luopei.work@gmail.com </font>** ](mailto:luopei.work@gmail.com)
 
 I am a GPU/AI ASIC architect. I used to work at Amazon Labs126, Intel Labs and some startups. I am interested in the AI Processor architecture and design. 
 
