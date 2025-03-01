@@ -43,7 +43,7 @@ Tensor Memory is a 128*512 Dwords memory for each Stream Multi-Processor (SM), a
 Data can be moved between Tensor Memory and Vector Register, and from Shared Memory to Tensor Memory. These data movement instructions are denoted in Figure 3.
 
 <div align="center">
-  <img src="blackwell_tcore/tmem_move.png">
+  <img src="blackwell_tcore/tmem_move.png" width="500">
 </div>
 <div align="center">
   Figure 3 Tensor Memory Data Move Operation
@@ -202,7 +202,7 @@ The above three steps can be optimized by reusing most of the data of Input Acti
 2. We can skip to write the corresponding row of D back into Tensor Memory, or write 0 back to Tensor Memory. The corresponding row of D is also marked in gray color in right side of Figure 7 (a).
 
 <div align="center">
-  <img src="blackwell_tcore/conv_step1.png">
+  <img src="blackwell_tcore/conv_step1.png" width="500">
 </div>
 <div align="center">
   (a)
