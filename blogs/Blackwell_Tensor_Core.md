@@ -326,16 +326,16 @@ For Blackwell, the MMA size is shown in Table 11.
 
 Table 11 MMA Size of Blackwell
 
-| tcgen05.mma.cta_group::[1\|2].  | Data Type             |	Shape	  | Scale Factor  |
-| ---                             | ---                   | ---     | ---           |
-| kind::tf32	                    | TF32*TF32             | 8x8x8	  |               |
-| kind::f16	                      | FP16*FP16, BF16*BF16  | 8x8x16  |	              |
-| kind::i8	                      | I8*I8, U8*U8	        | 8x8x32	|               |
-| kind::f8f6f4	                  | {f4,f6,f8}*{f4,f6,f8} | 8x8x32	|               |
-| kind::mxf8f6f4.block_scale	    | {mxf4,mxf6,mxf8}*{mxf4,mxf6,mxf8} | 8x8x32  |   |
-| kind::mxf4.block_scale	        | {mxf4}*{mxf4}	        | 8x8x64	|               |
-| kind::mxf4nvf4.block_scale.scale_vec_size::[2X\|4X] | {mxf4}*{mxf4} | 8x8x64  | 2*ue8m0 |
-|                                                     | {nvf4}*{nvf4}	|	        | 4*ue4m3 |
+| tcgen05.mma.cta_group::[1\|2].                      | Data Type                         |	Shape	  | Scale Factor  |
+| --------------------------------------------------- | --------------------------------- | ---     | ---           |
+| kind::tf32	                                        | TF32*TF32                         | 8x8x8	  |               |
+| kind::f16	                                          | FP16*FP16, BF16*BF16              | 8x8x16  |	              |
+| kind::i8	                                          | I8*I8, U8*U8	                    | 8x8x32	|               |
+| kind::f8f6f4	                                      | {f4,f6,f8}*{f4,f6,f8}             | 8x8x32	|               |
+| kind::mxf8f6f4.block_scale	                        | {mxf4,mxf6,mxf8}*{mxf4,mxf6,mxf8} | 8x8x32  |               |
+| kind::mxf4.block_scale	                            | {mxf4}*{mxf4}	                    | 8x8x64	|               |
+| kind::mxf4nvf4.block_scale.scale_vec_size::[2X\|4X] | {mxf4}*{mxf4}                     | 8x8x64  | 2*ue8m0 |
+|                                                     | {nvf4}*{nvf4}	                    |	        | 4*ue4m3 |
 
 Micro Scale value in Table 12 shows the group size of Micro Scale factor, which means how many elements in the matrix share one micro scale value. For mxf4.scale, if the matrix size is 8x8x64, 2 micro scale value would be needed for DP64. For nvf4.scale, 4 scale factors are needed for each DP64. 
 
