@@ -80,7 +80,7 @@ Blackwell improve the efficiency of convolution operation by reusing the Activat
 The original convolution operation with OH/H in the outer loop is shown in Algorithm 1, we will derive the Blackwell Convolution implementation from it.
 
 Algorithm 1 Original Convolution with OH in Outer Loop
-```C
+```c
 for (p=0; p<P; p++) // OH
   for (nq=0; nq<NQ; nq++) // N, OW
     {n, q} = F(nq)
