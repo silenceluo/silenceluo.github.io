@@ -1,6 +1,6 @@
 ---
 layout: page
-permalink: 
+permalink: blogs.md
 title: Blogs
 ---
 
