@@ -84,27 +84,33 @@ $$
 The size of OA is decided by the input size and convolution parameters:
 
 $$
+\left\{
 \begin{aligned}
 P &= \lfloor \frac{H + 2 * pad_H - d_H * (R-1) - 1}{stride_H} \rfloor + 1 \\
 Q &= \lfloor \frac{W + 2 * pad_W - d_W * (S-1) - 1}{stride_W} \rfloor + 1
 \end{aligned}
+\right.
 $$
 
 Given the OA coordinate $(p, q)$ and the Kernel coordinate $(r, s)$, we can get the corresponding IA coordinate:
 
 
 $$
+\left\{
 \begin{aligned}
 h &= p * stride_H - pad_H + r * d_H \\
 w &= q * stride_W - pad_W + s * d_W  
 \end{aligned}
+\right.
 $$
 
 $$
+\left\{
 \begin{aligned}
 p &= \frac{h + pad_H - r * d_H}{stride_H}  \\
 q &= \frac{w + pad_W - s * d_W}{stride_W}
 \end{aligned}
+\right.
 $$
 
 
@@ -115,20 +121,24 @@ Firstly, let us ignore N and C to simplify the work.
 To simplify the work, we assume that stride and dilation parameters are all 1 in all direction, And let us omit $K$ and $C$ direction first. Then the sie of OA can he simplified as:
 
 $$
+\left\{
 \begin{aligned}
 P &= \lfloor \frac{H + 2 * pad H - d_H * (R-1) - l}{stride H} \rfloor + 1 = H + 2 * pad_H - R + 1 \\
 Q &= \lfloor \frac{W + 2 * pad W - d_W * (S-l) - l}{stride w} \rfloor + 1 = W + 2 * pad_W - S + 1
 \end{aligned}
+\right.
 $$
 
 
 Given $(h, w)$ and $(r, s)$, $(p, g)$ can be derived as:
 
 $$
+\left\{
 \begin{aligned}
 p &= h + pad_H - r \\
 q &= w + pad_W - s
 \end{aligned} {}
+\right.
 $$
 
 
@@ -195,10 +205,12 @@ $$
 in which
 
 $$
+\left\{
 \begin{aligned}
 r' &= R-1-r  \\
 s' &= S-1-s
 \end{aligned} {}
+\right.
 $$
 
 In this view of BPW, it is a convolution of $O'$ and $A$, with padding size $(R-1-pad_H, S-1-pad_W)$. The generated $W(R-1-r', S-1-s')$ should be rotated \dag{180} to generate $W$.
@@ -230,10 +242,12 @@ $$
 In which $r'$ and $s'$ are defined as below:
 
 $$
+\left\{
 \begin{aligned}
 r' &= R-1-r  \\
 s' &= S-1-s
 \end{aligned} {}
+\right.
 $$
 
 From the above equation, we can see that BPA is a convolution of $O'$ and $W'=W(R-1-r, S-1-s)$, in which $W'$ is a 180 degree rotated $W$. The padding size is $(R-1-pad_H, S-1-pad_W)$.
@@ -258,10 +272,12 @@ Thus it is a stride convolution with dilation value $(stride_H, stride_W)$.
 As
 
 $$
+\left\{
 \begin{aligned}
 h &= p * stride_H - pad_H + r * d_H  \\
 w &= q * stride_W - pad_W + s * d_W  
 \end{aligned}
+\right.
 $$
 
 we have:
@@ -278,10 +294,12 @@ $$
 with 
 
 $$
+\left\{
 \begin{aligned}
 r' = R-1-r  \\
 s' = S-1-s
 \end{aligned} {}
+\right.
 $$
 
 Thus for BPA with Dilation=1 and Stride$>$1:
@@ -316,10 +334,12 @@ $$
 and 
 
 $$
+\left\{
 \begin{aligned}
 h &= p * stride_H - pad_H + r * d_H  \\
 w &= q * stride_W - pad_W + s * d_W  
 \end{aligned}
+\right.
 $$
 
 Then,
@@ -335,10 +355,12 @@ $$
 with 
 
 $$
+\left\{
 \begin{aligned}
 r' = R-1-r  \\
 s' = S-1-s
 \end{aligned} {}
+\right.
 $$
 
 Thus for BPA with Dilation$>$1 and Stride$>$1:
@@ -376,10 +398,12 @@ d W(k,r,s,c) = \sum_{n=0}^{N-1} \sum_{p=0}^{P-1} \sum_{q=0}^{Q-1} O'(n, p, q, k)
 $$
 
 $$
+\left\{
 \begin{aligned}
 h &= p * stride_H - pad_H + r * d_H  \\
 w &= q * stride_W - pad_W + s * d_W  
 \end{aligned}
+\right.
 $$
 
 There are two ways to map BPW to MMA operation.
