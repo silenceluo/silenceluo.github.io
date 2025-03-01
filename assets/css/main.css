@@ -40,6 +40,12 @@ table{
   margin-bottom:1.5em;
   border:2px solid #aaaaaa;
 }
+th{
+  border:2px solid #aaaaaa;
+}
+td{
+  border:1px solid #aaaaaa;
+}
 ::-moz-selection{background-color:#dadada;color:#343434;text-shadow:none;}
 ::selection{background-color:#dadada;color:#343434;text-shadow:none;}
 .all-caps{text-transform:uppercase;}
