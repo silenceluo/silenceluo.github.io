@@ -1,6 +1,13 @@
+- [1. AI Accelerator Architecture](#1-ai-accelerator-architecture)
+  - [1.1. Vector \* Vector](#11-vector--vector)
+  - [1.2. Vector \* Matrix](#12-vector--matrix)
+  - [1.3. Matrix \* Matrix](#13-matrix--matrix)
+  - [1.4. Systolic Array](#14-systolic-array)
+    - [1.4.1 Systolic Array Plus MMA](#141-systolic-array-plus-mma)
+  - [1.5. Comparison of Different Processor](#15-comparison-of-different-processor)
 
 
-# 1. History of Processor
+# 1. AI Accelerator Architecture
 
 The most import processor family, CPU, was designed to process common processing work and it is not enough to handle mass computational work. It is designed to process 2 data per cycle at the beginning, and some other extensions with higher computation power has been added later, but CPU is still very far from the requirement of AI work.
 
@@ -93,7 +100,23 @@ Disadvantage:
 - The number of multipliers is much smaller than Tensor Core.
 - The latency is much longer than Tensor Core. The above figure shows that it takes 4 cycles in total to feed the data into multipliers. 
 
-## 1.5 Comparison of Different Processor
+### 1.4.1 Systolic Array Plus MMA
+
+To solve the problem of Systolic Array and make use of its advantages, an architecture which combines the Systolic Array and Tensor Core was designed. It's architecture is shown as below.
+
+<div align="center">
+  <img src="AI_Accelerator_Architecture/systolic_cube.png"  alt="Systolic" title="Systolic Array" width="600">
+</div>
+<div align="center">
+  Figure 6 Systolic Array Combined with MMA Unit
+</div>
+
+The original Systolic Array has the most basic element as data, which this new design has a small MMA cubis as its most basic element. Instead of sending one element per cycle, one matrix of A and B are sent to Systolic Array each cycle. The advantages of this design is:
+
+- It has higher computation density;
+- It has better power than the Tensor Core  which has the same number of multipliers. 
+
+## 1.5. Comparison of Different Processor
 
 Let us compare different kinds of acceleraters in names of Data Reuse Ratio and other benchmarks. Data Reuse Ratio is defined as the ratio of number of multiplications and the size of data. 
 
