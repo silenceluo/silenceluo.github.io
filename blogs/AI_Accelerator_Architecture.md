@@ -15,7 +15,7 @@ $$
 D[N-1 : 0] = A[N-1 : 0] \times B[N-1 : 0]+ C[N-1 : 0]
 $$
 
-Thus Vector Core has much higher computation density than CPU.
+As Vector core can computer a group of data per instruction, Vector Core has much higher computation density than CPU.
 
 ## 1.2. Vector * Matrix
 
@@ -32,8 +32,7 @@ $$
   Figure 3 Vector*Matrix
 </div>
 
-This $Vector \times Matrix$ processor has  $M \times K$ multipliers, and omparing with $Vector \times Vector$ processor, it has much higher computation density. 
-
+This $Vector \times Matrix$ processor has  $M \times K$ multipliers, and comparing with $Vector \times Vector$ processor, it has much higher computation density. In many AI acclerators like NPUs (Neural Processing Unit), $Vector \times Matrix$ is the kernel computation unit and the most famous one is from Cambricon in this [paper](https://dl.acm.org/doi/abs/10.1145/2654822.2541967), which opens of the door of AI accelerators.
 
 <div align="center">
   <img src="AI_Accelerator_Architecture/cambricon_npu.png">
@@ -42,6 +41,7 @@ This $Vector \times Matrix$ processor has  $M \times K$ multipliers, and omparin
   Figure 3 Cambricon NPU Architecture with Vector*Matrix
 </div>
 
+In the above architecture, the $NBin$ contains the vector with size $T_n$ and the $SB$ contains the matrix with size $T_n \times T_n$. During the computation, the IA would be broadcasted to Weight data.
 
 ## 1.3. Matrix * Matrix
 
@@ -60,6 +60,8 @@ In tihs equation, the size of matrix $A$ is $M \times K$, the size of $B$ is $K 
   Figure 3 Matrix*Matrix
 </div>
 
+The most important accelerator using  $Matrix \times Matrix$ architecture is Tensor Core in Nvidia's GPUs, and it is always shown as this picture.
+
 <div align="center">
   <img src="AI_Accelerator_Architecture/Tensor_Core.png" alt="Tensor_Core" title="Tensor Core Matrix*Matrix" width="500">
 </div>
@@ -67,9 +69,15 @@ In tihs equation, the size of matrix $A$ is $M \times K$, the size of $B$ is $K 
   Figure 3 Tensor Core Matrix*Matrix
 </div>
 
+The Green cubes and the Pulple cubes can be seen as the IA and Weight data, and the blus cubes in the middle stand for the multipliers. This Tensor Core shows a $8 \times 8 \times 8$ MMA unit.
+
 ## 1.4. Systolic Array
 
-Systolic Array is a special MMA processor, but it has the same number of multipliers as $Vector \times Matrix$
+Systolic Array is a special MMA processor, but it has the same number of multipliers as $Vector \times Matrix$. It is not a new technology. The most important AI processor using Systolic Array is the TPU from Google.
+
+It attracts the attention because of power problem in ASIC. By sending the data into multipliers at the same cycle, the multipliers will start to work at the same time, and the emerging current will give pressure to the power supply circuits in ASIC. We call this $\frac{D_i}{D_t}$ or Di/Dt for simplicity in chip design. Instead of send all data into multipliers in one cycle, like in Tensor Core, data are feed into the multipliers one by one in Systolic Array, and they "flow" in the multiplier array.
+
+An example of $4 \times 4 \times 4$ systolic array is shown in the following picture.  
 
 <div align="center">
   <img src="AI_Accelerator_Architecture/systolic.png"  alt="Systolic" title="Systolic Array">
@@ -78,11 +86,16 @@ Systolic Array is a special MMA processor, but it has the same number of multipl
   Figure 3 Systolic Array Flow
 </div>
 
+Advantage:
+- The circuit starts slowly, and will not cause Di/Dt issue.
 
+Disadvantage:
+- The number of multipliers is much smaller than Tensor Core.
+- The latency is much longer than Tensor Core. The above figure shows that it takes 4 cycles in total to feed the data into multipliers. 
 
 ## 1.5 Comparison of Different Processor
 
-Let us compare different kinds of acceleraters in names of Data Reuse Ratio and other benchmarks. 
+Let us compare different kinds of acceleraters in names of Data Reuse Ratio and other benchmarks. Data Reuse Ratio is defined as the ratio of number of multiplications and the size of data. 
 
 | Accelerator Type        | Multiplier Num  | Data size     | Data Reuse Ratio (Mul/Data) | Data Dimension  | Multipliers Dimension |
 | --                      | --              | --            | :--:                        | :--:            | :--:  |
@@ -92,3 +105,4 @@ Let us compare different kinds of acceleraters in names of Data Reuse Ratio and 
 | MMA                     | M * N * K       | M*N + N*K     | $\frac{N}{2}$               | 2               | 3   |
 | Systolic                | M * N           | M*N + N*K     | 0.5                         | 2               | 2   |
 
+From the above table, it is clear that Tensor Core has the highest Data Reuse Ratio, that is why it is the most popular architecture today.
