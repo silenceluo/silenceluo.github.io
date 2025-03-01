@@ -202,13 +202,13 @@ The above three steps can be optimized by reusing most of the data of Input Acti
 2. We can skip to write the corresponding row of D back into Tensor Memory, or write 0 back to Tensor Memory. The corresponding row of D is also marked in gray color in right side of Figure 7 (a).
 
 <div align="center">
-  <img src="blackwell_tcore/conv_step1.png" width="500">
+  <img src="blackwell_tcore/conv_step1.png" width="600">
 </div>
 <div align="center">
   (a)
 </div>
 <div align="center">
-  <img src="blackwell_tcore/conv_step1_3.png">
+  <img src="blackwell_tcore/conv_step1_3.png" width="1000">
 </div>
 <div align="center">
   (b)
