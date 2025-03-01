@@ -38,7 +38,7 @@ table{
   border-collapse:collapse;
   border-spacing:0;
   margin-bottom:1.5em;
-  border:2px solid #ff0000;
+  border:2px solid #aaaaaa;
 }
 ::-moz-selection{background-color:#dadada;color:#343434;text-shadow:none;}
 ::selection{background-color:#dadada;color:#343434;text-shadow:none;}
