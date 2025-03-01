@@ -22,7 +22,7 @@
 
 # 1. [Back Propagation of MMA](#sec:mma_bp)
 
-The forward propagation of MMA can be denoted as (\ref{eq2}):
+The forward propagation of MMA can be denoted as:
 
 $$
 \begin{aligned}
@@ -33,9 +33,9 @@ $$
 
 ## 1.1. [BPA of MMA](#sec:mma_bpa)
 
-The gradient of Input Activation can be defined as \eqref{eq:dX}:
+The gradient of Input Activation can be defined as:
 
-\begin{equation}
+$$
 \begin{aligned}
 d X(m, k) &= \frac{\delta L}{\delta X(m, k)} \\
           &= \sum_{n=0}^{N-1} \frac{dL}{dY(m,n)} * \frac{dY(m,n)}{d X(m, k)}  \\
@@ -43,7 +43,7 @@ d X(m, k) &= \frac{\delta L}{\delta X(m, k)} \\
           &= \sum_{n=0}^{N-1} Y'(m,n) * W(k, n)
 \end{aligned}
 \label{eq:dX}
-\end{equation}
+$$
 
 Thus Back Propagation of Activation (BPA) can be denoted as:
 
