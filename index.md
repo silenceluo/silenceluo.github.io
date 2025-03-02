@@ -13,7 +13,6 @@ Email: [**<font color="#990000">  luopei.work@gmail.com </font>** ](mailto:luope
 
 I am a GPU/AI ASIC architect. I used to work at Amazon Labs126, Intel Labs and some startups. I am interested in the AI Processor architecture and design. 
 
-I used to live and work in Boston and Silicon Valley, and now I am living in Shanghai, China. 
 
 <!-- **<font color="#990000">   </font>** -->
 
