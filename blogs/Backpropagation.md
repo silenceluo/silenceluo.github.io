@@ -118,7 +118,7 @@ Firstly, let us ignore N and C to simplify the work.
 
 ## 2.1. [Stride=1, Dilation=1](#sec:conv_S1D1)
 
-To simplify the work, we assume that stride and dilation parameters are all 1 in all direction, And let us omit $K$ and $C$ direction first. Then the sie of OA can he simplified as:
+To simplify the work, we assume that stride and dilation parameters are  1 in all direction, and let us omit $K$ and $C$ direction first. Then the sie of OA can he simplified as:
 
 $$
 \left\{
@@ -130,7 +130,7 @@ Q &= \lfloor \frac{W + 2 * pad W - d_W * (S-l) - l}{stride w} \rfloor + 1 = W + 
 $$
 
 
-Given $(h, w)$ and $(r, s)$, $(p, g)$ can be derived as:
+Given $(h, w)$ and $(r, s)$, $(p, q)$ can be derived as:
 
 $$
 \left\{
@@ -178,13 +178,13 @@ d W(r, s) &= \sum_{p=0}^{P-1} \sum_{q=0}^{Q-1} O'(p, q) * \frac{\delta O(p, q)}{
 \end{aligned}{}
 $$
 
-Put (\ref{eq:pq_s1d1}) into the original convolution (\ref{eg:conv2d_pkg}), the original convolution can be denoted as:
+The original convolution can be denoted as:
 
 $$
 O(p,q) = \sum_{r=0}^{R-l}  \sum_{s=0}^{S-1} A(p - pad_H + r, q - pad_W + s) * W(r, s)
 $$
 
-Compare (\ref{eg:dw_s1d1}) and (\ref{eq:conv2d_sldl}), we can see that $d W$ is a convolution of $A$ and $O'$, and the padding size is still $(pad_H, pad_W)$.
+Compare $dW$ and original convolution, we can see that $d W$ is a convolution of $A$ and $O'$, and the padding size is still $(pad_H, pad_W)$.
 
 #### 2.1.1.2. BPW as Convolution of $O'$ and $A$
 
@@ -213,7 +213,7 @@ s' &= S-1-s
 \right.
 $$
 
-In this view of BPW, it is a convolution of $O'$ and $A$, with padding size $(R-1-pad_H, S-1-pad_W)$. The generated $W(R-1-r', S-1-s')$ should be rotated \dag{180} to generate $W$.
+In this view of BPW, it is a convolution of $O'$ and $A$, with padding size $(R-1-pad_H, S-1-pad_W)$. The generated $W(R-1-r', S-1-s')$ should be rotated 180 degrees to generate $W$.
 
 ### 2.1.2. BPA
 
@@ -265,7 +265,7 @@ d W(r,s) &= \frac{\delta L}{\delta W(r, s)}   \\
 \end{aligned}{}
 $$
 
-Thus it is a stride convolution with dilation value $(stride_H, stride_W)$.
+Thus it is a stride convolution with stride value $(stride_H, stride_W)$.
 
 ### 2.2.2. BPA
 
@@ -410,7 +410,7 @@ There are two ways to map BPW to MMA operation.
 
 #### 2.4.1.1. BPW as Convolution of $A$ and $O'$
 
-The first way to implement BPW is shown in (\ref{eq:bpw_reorg_AO}).
+The first way to implement BPW is shown below.
 
 $$
 \begin{aligned}
@@ -418,11 +418,11 @@ d W(c,r,s,k) = \sum_{n=0}^{N-1} \sum_{p=0}^{P-1} \sum_{q=0}^{Q-1} A(c, h, w, n) 
 \end{aligned}
 $$
 
-We can view (\ref{eq:bpw_reorg_AO}) as the original convolution by mapping the coordinates.
+We can view $dW$ as the original convolution by mapping the coordinates.
 
 #### 2.4.1.2. BPW as Convolution of $O'$ and $A$
 
-The second way to implement BPW is shown in (\ref{eq:bpw_reorg}).
+The second way to implement BPW is shown below.
 
 $$
 \begin{aligned}
@@ -430,7 +430,7 @@ d W(k,r,s,c) = \sum_{n=0}^{N-1} \sum_{p=0}^{P-1} \sum_{q=0}^{Q-1} O'(k, p, q, n)
 \end{aligned}
 $$
 
-We can view (\ref{eq:bpw_reorg}) as the original convolution by mapping the coordinates.
+We can view $dW$ as the original convolution by mapping the coordinates.
 
 
 ### 2.4.2. BPA
