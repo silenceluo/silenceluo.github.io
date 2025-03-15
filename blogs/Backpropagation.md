@@ -42,7 +42,6 @@ d X(m, k) &= \frac{\delta L}{\delta X(m, k)} \\
           &= \sum_{n=0}^{N-1} Y'(m,n) * \frac{dY(m,n)}{d X(m, k)} \\
           &= \sum_{n=0}^{N-1} Y'(m,n) * W(k, n)
 \end{aligned}
-\label{eq:dX}
 $$
 
 Thus Back Propagation of Activation (BPA) can be denoted as:
