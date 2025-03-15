@@ -23,6 +23,8 @@ Here are some of my articles of AI processor:
 
 - [Backpropagation of MMA and Convolution](blogs/Backpropagation.md)
 
+- [Example of Activcation Backpropagation in Convolution](blogs/Backpropagation_conv_bpa_example.md)
+
 - [Blackwell Tensor Core Architecture](blogs/Blackwell_Tensor_Core.md)
 
 
