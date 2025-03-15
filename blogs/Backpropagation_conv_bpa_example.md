@@ -5,7 +5,7 @@
 
 # 1. Back Propagation of Activation
 
-As we have discussed in the [convolution of MMA and Convolution](), the Backpropagation of Activation (BPA) of convolution can be denoted as following:
+As we have discussed in the [Convolution of MMA and Convolution](https://silenceluo.github.io/blogs/Backpropagation), the Backpropagation of Activation (BPA) of convolution can be denoted as following:
 
 $$
 d A(h, w) = \sum_{r} \sum_{s} O'( \frac{h+pad_H-r*d_H}{stride_H}, \frac{w+pad_W-s*d_W}{stride_W} ) * W(r, s)  
