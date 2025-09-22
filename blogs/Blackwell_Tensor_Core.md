@@ -71,8 +71,6 @@ With this design, it is possible to finish the tcgen05.shift in 1 cycle.
 There could be different architecture for Tensor Memory, as there is a balance between speed and resource overhead. For example, 4 banks and each bank 128 entries, and the tcgen05.shift takes 2 cycle in this case.
 
  
-Figure 5 Tensor Memory Architecture for 32 Threads
-
 ## 1.2. Convolution 
 ### 1.2.1. Algorithm
 Blackwell improve the efficiency of convolution operation by reusing the Activation data in Tensor Memory. As shown in previous section, the data in Tensor Memory can be shifted by one lane, and this feature can be used to reuse the Activation data thus to relief the bandwidth of Shared Memory. 
