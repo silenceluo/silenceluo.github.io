@@ -9,6 +9,17 @@ title: Publications
 ## Approved Patent
 - **Pei, Luo**, Ellen Liao, Lu Lu, Kathiravetpillai Sivanesan, and JoonBeom Kim. ["Method for physical layer security protection using public keys."](https://patents.google.com/patent/US10425810B2/en) U.S. Patent 10,425,810, issued September 24, 2019.
 
+
+- **骆培**，Mike Hong，Tong Sun，“一种用于共享内存中数据访存的方法、电子设备、存储介质和计算机程序产品”，（一种用于避免访问冲突的GPU共享存储单元的哈希算法, A Swizzle Algorithm to avoid Bank Clash in GPU Shared Memory），CN119938362A，2025.05.06授权
+
+- **骆培**，Mike Hong，Tong Sun, “计算核、数据处理方法、电子设备和存储介质”，（一种用于AI处理器的FP10和FP12的数据格式以及其存储和编解码方法, FP10 and FP12 Format Storage and Encoding, Decoding Method for AI Processors），CN120233982A，2025.07.01授权
+
+- **骆培**，Mike Hong, "人工智能芯片及其操作方法"，（一种用于AI处理器的统一的共享存储单元的架构, Efficient Shared Memory Architecture for AI Processor），CN120234295A，2025.07.01授权
+
+- **骆培**，谢轶，高鹏, "PCIE装置及其操作方法"，（一种支持乱序写执行的PCIE到AXI协议的桥接系统, A Switch Between PCIE and AXI Bus Supporting Out-of-Order Transmission），CN120578620A, 2025.09.02 授权
+
+- **骆培**，谢轶, 高鹏，James Huang, " PCIE装置及其操作方法"，（一种PCIe虚拟ID的管理单元, Efficient Virtual ID Management Module in PCIE Controller），CN120578619A, 2025.09.02 授权
+
 <br>
 
 ---
