@@ -10,6 +10,8 @@
 
 # 1. [Blackwell SM_100a Tensor Core Architecture](#sec:tile)
 
+2025-02-14
+
 ## 1.1. [Tensor Memory](#sec:ensor_mem)
 
 Blackwell architecture introduced new features like Tensor Memory to relief the pressure of Shared memory and Vector Register. Such that the matrices can be read from Tensor Memory and Shared Memory, instead of from Vector Register. The matrices are stored as shown in Table 8 and 
